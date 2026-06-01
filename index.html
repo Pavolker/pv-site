@@ -12,33 +12,34 @@
     /* ═══════════════════════════ BASE ═══════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg:         #0a0a0b;
-      --surface:   #131316;
-      --card:      #1a1a20;
-      --card-edge: #23232a;
-      --brdr:      #1f1f26;
-      --brdr-lt:   #2a2a34;
-      --txt-high:  #f0ede6;
-      --txt-body:  #c2bdb5;
-      --txt-dim:   #8d8982;
-      --txt-mute:  #636059;
-      --txt-faint: #4a4843;
+      --bg:         #1a1a1e;
+      --surface:   #222228;
+      --card:      #282830;
+      --card-edge: #33333c;
+      --brdr:      #2a2a30;
+      --brdr-lt:   #3a3a44;
+      --txt-high:  #f5f2eb;
+      --txt-body:  #dad5cc;
+      --txt-dim:  #a8a39a;
+      --txt-mute:  #807b72;
+      --txt-faint: #6a6660;
       --accent:    #c7a86a;
       --accent-bg: rgba(199,168,106,0.08);
-      --accent-ln: #b8944e;
+      --accent-ln: #d4a85a;
       --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
       --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --mono:  'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--sans);
+      font-family: var(--serif);
       background: var(--bg);
       color: var(--txt-body);
-      line-height: 1.75;
-      font-weight: 300;
+      line-height: 1.8;
+      font-weight: 400;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      font-size: 1.05rem;
     }
 
     /* ═══════════════════════════ HEADER ═══════════════════════════ */
@@ -147,9 +148,9 @@
     /* ═══════════════════════════ INTRO ═══════════════════════════ */
     .intro-text {
       font-family: var(--serif);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--txt-dim);
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--txt-body);
       margin-bottom: 40px;
       padding-bottom: 32px;
       border-bottom: 1px solid var(--brdr);
@@ -278,17 +279,17 @@
     }
     .post-card .post-title {
       font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 400;
+      font-size: 1.5rem;
+      font-weight: 500;
       color: var(--txt-high);
       margin-bottom: 20px;
       line-height: 1.35;
     }
     .post-card .post-content {
       font-family: var(--serif);
-      font-size: 1rem;
-      color: var(--txt-body);
-      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--txt-high);
+      font-weight: 400;
       line-height: 1.8;
     }
     .post-card .post-content p { margin-bottom: 16px; }
