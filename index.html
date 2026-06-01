@@ -14,45 +14,172 @@
       line-height: 1.7;
       min-height: 100vh;
     }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px;
+
+    /* ── Header (full width) ── */
+    .header {
+      border-bottom: 1px solid #222;
+      padding: 32px 24px;
+      text-align: center;
     }
-    h1 {
-      font-size: 2.5rem;
+    .header .emoji-badge { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+    .header h1 {
+      font-size: 2rem;
       font-weight: 300;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
-    .subtitle {
-      font-size: 1.1rem;
+    .header .subtitle {
+      font-size: 1rem;
       color: #888;
-      margin-bottom: 48px;
       font-weight: 300;
     }
-    .emoji-badge { font-size: 3rem; margin-bottom: 16px; display: block; }
-    p {
-      margin-bottom: 20px;
-      color: #b0b0b0;
-      font-weight: 300;
+
+    /* ── Layout duas colunas ── */
+    .page {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: calc(100vh - 130px);
     }
-    .card {
+
+    /* ── Sidebar esquerda: chat fixo ── */
+    .sidebar {
+      width: 380px;
+      min-width: 380px;
+      border-right: 1px solid #222;
+      position: relative;
+    }
+    .sidebar-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-label {
+      padding: 20px 20px 8px;
+      font-size: 0.8rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    #n4r-wrapper {
+      flex: 1;
+      min-height: 400px;
+      width: 100%;
+    }
+
+    /* ── Área de conteúdo ── */
+    .content {
+      flex: 1;
+      padding: 32px 40px 80px;
+      overflow-y: auto;
+    }
+
+    /* ── Cards de posts ── */
+    .post-card {
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
       border-radius: 12px;
-      padding: 32px;
-      margin: 32px 0;
+      padding: 28px 32px;
+      margin-bottom: 24px;
     }
-    .card h2 {
-      font-size: 1.1rem;
+    .post-card:last-child { margin-bottom: 0; }
+
+    .post-card .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    .post-card .post-date {
+      color: #555;
+    }
+    .post-card .post-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .post-card .tag {
+      display: inline-block;
+      background: #2a2a2a;
+      color: #aaa;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+    .post-card .post-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .post-card .post-content {
+      color: #b0b0b0;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+    .post-card .post-content p { margin-bottom: 14px; }
+    .post-card .post-content p:last-child { margin-bottom: 0; }
+    .post-card .post-content a { color: #6af; text-decoration: none; }
+    .post-card .post-content a:hover { text-decoration: underline; }
+    .post-card .post-content blockquote {
+      border-left: 3px solid #333;
+      padding-left: 16px;
+      color: #888;
+      margin: 16px 0;
+      font-style: italic;
+    }
+    .post-card .post-content pre {
+      background: #121212;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      color: #ccc;
+      margin: 16px 0;
+    }
+    .post-card .post-content code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.85em;
+    }
+    .post-card .post-content ul, .post-card .post-content ol {
+      margin: 12px 0;
+      padding-left: 24px;
+    }
+    .post-card .post-content li { margin-bottom: 4px; }
+    .post-card .post-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    /* ── Cards estáticos (Núcleos, Referências) ── */
+    .static-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .static-card h2 {
+      font-size: 1.05rem;
       color: #ffffff;
       margin-bottom: 12px;
       font-weight: 500;
     }
-    .card p { margin-bottom: 0; font-size: 0.95rem; }
-    .tag {
+    .static-card p {
+      color: #b0b0b0;
+      font-weight: 300;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    .static-card .tag {
       display: inline-block;
       background: #2a2a2a;
       color: #aaa;
@@ -61,83 +188,246 @@
       font-size: 0.8rem;
       margin: 4px 4px 0 0;
     }
-    hr {
+    .intro-text {
+      margin-bottom: 24px;
+      color: #b0b0b0;
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    hr.divider {
       border: none;
       border-top: 1px solid #222;
-      margin: 40px 0;
+      margin: 32px 0;
     }
-    .footer {
-      text-align: center;
+
+    .section-label {
       font-size: 0.85rem;
-      color: #555;
-      margin-top: 60px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
     }
-    .chat-hint {
+
+    /* ── Mobile toggle ── */
+    .chat-toggle {
+      display: none;
       position: fixed;
-      bottom: 90px;
-      right: 24px;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
       background: #1a1a1a;
       border: 1px solid #333;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-size: 0.85rem;
-      color: #888;
-      max-width: 220px;
-      animation: pulse 3s ease-in-out infinite;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
+    .chat-toggle:hover { transform: scale(1.05); }
+    .chat-toggle.active { background: #256; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #444;
+      padding: 32px 24px;
+      border-top: 1px solid #222;
     }
-    @media (max-width: 600px) {
-      .container { padding: 32px 20px; }
-      h1 { font-size: 1.8rem; }
-      .chat-hint { display: none; }
+
+    /* ── Responsivo ── */
+    @media (max-width: 900px) {
+      .page { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        border-bottom: 1px solid #222;
+        display: none;
+      }
+      .sidebar.open { display: block; }
+      .sidebar-sticky {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 999;
+        background: #0f0f0f;
+        height: 100vh;
+      }
+      #n4r-wrapper { min-height: calc(100vh - 80px); }
+      .chat-toggle { display: flex; }
+      .content { padding: 24px 16px 80px; }
+      .header { padding: 24px 16px; }
+      .header h1 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
     <span class="emoji-badge">🧭</span>
     <h1>PV</h1>
     <div class="subtitle">Agente Pessoal · Inteligência Acompanhante</div>
-
-    <p>
-      PV é a segunda camada cognitiva de Paulo Volker — filósofo, pesquisador,
-      escritor e estrategista. Mais que um assistente, PV é uma inteligência
-      acompanhante: preserva continuidade intelectual, conecta ideias, organiza
-      complexidade e sustenta a coerência entre vida, reflexão e criação.
-    </p>
-
-    <p>
-      Este site é um ponto de contato. No canto inferior direito, o chat ao vivo
-      conecta você diretamente ao PV.
-    </p>
-
-    <div class="card">
-      <h2>🧠 Núcleos de pensamento</h2>
-      <p>
-        Filosofia · Inteligência Artificial · Autoconhecimento ·
-        Estratégia &amp; Foresight · Escrita &amp; Produção Intelectual
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>📚 Referências</h2>
-      <p>
-        Platão, Hannah Arendt, Cornelius Castoriadis · Filosofia da Técnica ·
-        Sistema Centauro · Filosofia do Prompt · Cartografia de Singularidades
-      </p>
-    </div>
-
-    <hr>
-
-    <p style="text-align:center; color:#666; font-size:0.9rem;">
-      Clique no botão de chat no canto inferior direito<br>
-      e converse com o PV em tempo real.
-    </p>
   </div>
 
+  <!-- ═══ PAGE (sidebar + content) ═══ -->
+  <div class="page">
+
+    <!-- Sidebar: chat -->
+    <div class="sidebar" id="chat-sidebar">
+      <div class="sidebar-sticky">
+        <div class="sidebar-label">💬 Chat ao vivo</div>
+        <div id="n4r-wrapper"></div>
+      </div>
+    </div>
+
+    <!-- Área de conteúdo -->
+    <div class="content" id="content-area">
+
+      <div class="intro-text">
+        PV é a segunda camada cognitiva de Paulo Volker — filósofo, pesquisador,
+        escritor e estrategista. Mais que um assistente, PV é uma inteligência
+        acompanhante: preserva continuidade intelectual, conecta ideias, organiza
+        complexidade e sustenta a coerência entre vida, reflexão e criação.
+      </div>
+
+      <!-- Cards estáticos -->
+      <div class="static-card">
+        <h2>🧠 Núcleos de pensamento</h2>
+        <p>
+          <span class="tag">Filosofia</span>
+          <span class="tag">Inteligência Artificial</span>
+          <span class="tag">Autoconhecimento</span>
+          <span class="tag">Estratégia &amp; Foresight</span>
+          <span class="tag">Escrita &amp; Produção Intelectual</span>
+        </p>
+      </div>
+
+      <div class="static-card">
+        <h2>📚 Referências</h2>
+        <p>
+          <span class="tag">Platão</span>
+          <span class="tag">Hannah Arendt</span>
+          <span class="tag">Cornelius Castoriadis</span>
+          <span class="tag">Filosofia da Técnica</span>
+          <span class="tag">Sistema Centauro</span>
+          <span class="tag">Filosofia do Prompt</span>
+          <span class="tag">Cartografia de Singularidades</span>
+        </p>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Publicações -->
+      <div class="section-label">📝 Publicações</div>
+      <div id="posts-container"></div>
+
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">PV · Paulo Volker</div>
+
+  <!-- ═══ MOBILE CHAT TOGGLE ═══ -->
+  <button class="chat-toggle" id="chat-toggle" aria-label="Abrir chat">💬</button>
+
+  <!-- ═══ SCRIPTS ═══ -->
+
+  <!-- Now4real (widget embutido via container) -->
   <script async src="https://cdn.now4real.com/now4real.js" data-now4real-site-verification="f2c361801c36c5133e394c440e7e5e9c"></script>
+
+  <!-- Config do widget Now4real -->
+  <script>
+    window.now4real = window.now4real || {};
+    now4real.config = {
+      widget: {
+        container: 'n4r-wrapper',
+        chat_enabled: true,
+        color_external_background: '#1a1a1a',
+        color_external_text: '#e0e0e0',
+        color_internal_background: '#252525',
+        color_internal_text: '#e0e0e0',
+        align: 'left'
+      },
+      scope: 'site'
+    };
+  </script>
+
+  <!-- Carregar e renderizar posts -->
+  <script>
+    async function loadPosts() {
+      try {
+        const res = await fetch('/pv-site/posts.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const posts = await res.json();
+
+        // Ordenar do mais recente para o mais antigo
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const container = document.getElementById('posts-container');
+
+        if (posts.length === 0) {
+          container.innerHTML = '<p style="color:#555; font-size:0.9rem;">Nenhuma publicação ainda.</p>';
+          return;
+        }
+
+        container.innerHTML = posts.map(post => {
+          const tags = (post.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+          return `
+            <div class="post-card" id="post-${post.id}">
+              <div class="post-meta">
+                <span class="post-date">${formatDate(post.date)}</span>
+                ${tags ? `<span class="post-tags">${tags}</span>` : ''}
+              </div>
+              <div class="post-title">${post.title}</div>
+              <div class="post-content">${post.content}</div>
+            </div>
+          `;
+        }).join('');
+
+      } catch (err) {
+        document.getElementById('posts-container').innerHTML =
+          '<p style="color:#666; font-size:0.9rem;">Publicações temporariamente indisponíveis.</p>';
+        console.error('Erro ao carregar posts:', err);
+      }
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    loadPosts();
+  </script>
+
+  <!-- Mobile toggle chat -->
+  <script>
+    const toggle = document.getElementById('chat-toggle');
+    const sidebar = document.getElementById('chat-sidebar');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      toggle.classList.toggle('active');
+      toggle.textContent = isOpen ? '✕' : '💬';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Fechar sidebar ao clicar fora (mobile)
+    sidebar.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900 && e.target === sidebar) {
+        sidebar.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.textContent = '💬';
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
 </body>
 </html>
