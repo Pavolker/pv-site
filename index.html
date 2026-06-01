@@ -1,54 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="now4real-site-verification" content="f2c361801c36c5133e394c440e7e5e9c"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PV · Agente Pessoal</title>
+  <meta charset="UTF-8" />
+  <meta name="now4real-site-verification" content="f2c361801c36c5133e394c440e7e5e9c" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Filosofia no Ralo do Tempo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ═══════════════════════════ BASE ═══════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:         #0a0a0b;
+      --surface:   #131316;
+      --card:      #1a1a20;
+      --card-edge: #23232a;
+      --brdr:      #1f1f26;
+      --brdr-lt:   #2a2a34;
+      --txt-high:  #f0ede6;
+      --txt-body:  #c2bdb5;
+      --txt-dim:   #8d8982;
+      --txt-mute:  #636059;
+      --txt-faint: #4a4843;
+      --accent:    #c7a86a;
+      --accent-bg: rgba(199,168,106,0.08);
+      --accent-ln: #b8944e;
+      --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono:  'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f0f0f;
-      color: #e0e0e0;
-      line-height: 1.7;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--txt-body);
+      line-height: 1.75;
+      font-weight: 300;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Header (full width) ── */
+    /* ═══════════════════════════ HEADER ═══════════════════════════ */
     .header {
-      border-bottom: 1px solid #222;
-      padding: 32px 24px;
+      position: relative;
       text-align: center;
+      padding: 72px 24px 48px;
+      background: linear-gradient(180deg, rgba(199,168,106,0.04) 0%, transparent 100%);
+      border-bottom: 1px solid var(--brdr);
+      overflow: hidden;
     }
-    .header .emoji-badge { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(199,168,106,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-emoji { font-size: 3rem; display: block; margin-bottom: 12px; position: relative; }
     .header h1 {
-      font-size: 2rem;
+      font-family: var(--serif);
+      font-size: 2.6rem;
       font-weight: 300;
+      color: var(--txt-high);
       letter-spacing: -0.02em;
-      color: #ffffff;
-      margin-bottom: 4px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      position: relative;
     }
     .header .subtitle {
-      font-size: 1rem;
-      color: #888;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--txt-dim);
       font-weight: 300;
+      position: relative;
     }
+    .header .subtitle em { font-style: italic; color: var(--accent); }
 
-    /* ── Layout duas colunas ── */
+    /* ═══════════════════════════ PAGE LAYOUT ═══════════════════════════ */
     .page {
       display: flex;
-      max-width: 1200px;
+      max-width: 1260px;
       margin: 0 auto;
-      min-height: calc(100vh - 130px);
+      min-height: calc(100vh - 200px);
     }
 
-    /* ── Sidebar esquerda: chat fixo ── */
+    /* ═══════════════════════════ SIDEBAR (CHAT) ═══════════════════════════ */
     .sidebar {
       width: 380px;
       min-width: 380px;
-      border-right: 1px solid #222;
+      border-right: 1px solid var(--brdr);
       position: relative;
+      background: linear-gradient(90deg, transparent, transparent calc(100% - 1px), var(--brdr) calc(100% - 1px));
     }
     .sidebar-sticky {
       position: sticky;
@@ -56,13 +104,32 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      padding-top: 0;
+    }
+    .sidebar-head {
+      padding: 28px 24px 12px;
+      border-bottom: 1px solid var(--brdr);
+    }
+    .sidebar-head .site-title {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--txt-high);
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+    .sidebar-head .site-sub {
+      font-family: var(--serif);
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--txt-mute);
     }
     .sidebar-label {
-      padding: 20px 20px 8px;
-      font-size: 0.8rem;
-      color: #555;
+      padding: 16px 24px 8px;
+      font-size: 0.7rem;
+      color: var(--txt-faint);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      font-weight: 500;
     }
     #n4r-wrapper {
       flex: 1;
@@ -70,185 +137,265 @@
       width: 100%;
     }
 
-    /* ── Área de conteúdo ── */
+    /* ═══════════════════════════ CONTENT AREA ═══════════════════════════ */
     .content {
       flex: 1;
-      padding: 32px 40px 80px;
+      padding: 40px 48px 80px;
       overflow-y: auto;
     }
 
-    /* ── Cards de posts ── */
-    .post-card {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
+    /* ═══════════════════════════ INTRO ═══════════════════════════ */
+    .intro-text {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--txt-dim);
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--brdr);
+      max-width: 640px;
     }
-    .post-card:last-child { margin-bottom: 0; }
+    .intro-text strong { color: var(--txt-body); font-weight: 400; }
 
+    /* ═══════════════════════════ STATIC CARDS (JANELAS) ═══════════════════════════ */
+    .static-card {
+      background: var(--card);
+      border: 1px solid var(--card-edge);
+      border-radius: 16px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .static-card .window-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--card-edge);
+    }
+    .static-card .window-bar .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .static-card .window-bar .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .static-card .window-bar .dot-r { background: #ed6a5e; }
+    .static-card .window-bar .dot-y { background: #f4bf4f; }
+    .static-card .window-bar .dot-g { background: #61c454; }
+    .static-card .window-bar .win-title {
+      font-size: 0.78rem;
+      color: var(--txt-mute);
+      margin-left: 6px;
+      font-weight: 400;
+    }
+    .static-card .card-body {
+      padding: 24px 28px;
+    }
+    .static-card .card-body h2 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--txt-high);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .static-card .card-body p {
+      font-size: 0.93rem;
+      color: var(--txt-dim);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+    .static-card .tag {
+      display: inline-block;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 3px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      margin: 3px 4px 3px 0;
+      border: 1px solid rgba(199,168,106,0.12);
+    }
+
+    /* ═══════════════════════════ POST CARDS (JANELAS) ═══════════════════════════ */
+    .post-card {
+      background: var(--card);
+      border: 1px solid var(--card-edge);
+      border-radius: 16px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .post-card:hover { border-color: var(--brdr-lt); }
+    .post-card .window-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--card-edge);
+    }
+    .post-card .window-bar .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .post-card .window-bar .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .post-card .window-bar .dot-r { background: #ed6a5e; }
+    .post-card .window-bar .dot-y { background: #f4bf4f; }
+    .post-card .window-bar .dot-g { background: #61c454; }
+    .post-card .window-bar .win-title {
+      font-size: 0.78rem;
+      color: var(--txt-mute);
+      margin-left: 6px;
+      font-weight: 400;
+    }
+    .post-card .card-body {
+      padding: 28px 32px;
+    }
     .post-card .post-meta {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
-      font-size: 0.8rem;
-      color: #666;
+      font-size: 0.78rem;
+      color: var(--txt-faint);
     }
     .post-card .post-date {
-      color: #555;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--txt-mute);
+      letter-spacing: 0.02em;
     }
     .post-card .post-tags {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
     }
-    .post-card .tag {
-      display: inline-block;
-      background: #2a2a2a;
-      color: #aaa;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-    }
     .post-card .post-title {
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: #ffffff;
-      margin-bottom: 16px;
-      line-height: 1.4;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--txt-high);
+      margin-bottom: 20px;
+      line-height: 1.35;
     }
     .post-card .post-content {
-      color: #b0b0b0;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--txt-body);
       font-weight: 300;
-      font-size: 0.95rem;
+      line-height: 1.8;
     }
-    .post-card .post-content p { margin-bottom: 14px; }
+    .post-card .post-content p { margin-bottom: 16px; }
     .post-card .post-content p:last-child { margin-bottom: 0; }
-    .post-card .post-content a { color: #6af; text-decoration: none; }
-    .post-card .post-content a:hover { text-decoration: underline; }
+    .post-card .post-content a { color: var(--accent-ln); text-decoration: none; border-bottom: 1px solid rgba(184,148,78,0.2); transition: border-color 0.2s; }
+    .post-card .post-content a:hover { border-bottom-color: var(--accent-ln); }
     .post-card .post-content blockquote {
-      border-left: 3px solid #333;
-      padding-left: 16px;
-      color: #888;
-      margin: 16px 0;
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      color: var(--txt-dim);
       font-style: italic;
+      margin: 20px 0;
+      font-size: 0.95em;
     }
     .post-card .post-content pre {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      padding: 16px;
+      background: #0c0c10;
+      border: 1px solid var(--brdr-lt);
+      border-radius: 10px;
+      padding: 20px;
       overflow-x: auto;
-      font-size: 0.85rem;
-      color: #ccc;
-      margin: 16px 0;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--txt-dim);
+      margin: 20px 0;
+      line-height: 1.6;
     }
     .post-card .post-content code {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 0.85em;
+      font-family: var(--mono);
+      font-size: 0.82em;
+      background: rgba(255,255,255,0.04);
+      padding: 1px 6px;
+      border-radius: 4px;
     }
-    .post-card .post-content ul, .post-card .post-content ol {
-      margin: 12px 0;
+    .post-card .post-content ul,
+    .post-card .post-content ol {
+      margin: 16px 0;
       padding-left: 24px;
     }
-    .post-card .post-content li { margin-bottom: 4px; }
+    .post-card .post-content li { margin-bottom: 6px; }
     .post-card .post-content img {
       max-width: 100%;
-      border-radius: 8px;
-      margin: 16px 0;
+      border-radius: 10px;
+      margin: 20px 0;
     }
 
-    /* ── Cards estáticos (Núcleos, Referências) ── */
-    .static-card {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
-    }
-    .static-card h2 {
-      font-size: 1.05rem;
-      color: #ffffff;
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-    .static-card p {
-      color: #b0b0b0;
-      font-weight: 300;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-    }
-    .static-card .tag {
-      display: inline-block;
-      background: #2a2a2a;
-      color: #aaa;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin: 4px 4px 0 0;
-    }
-    .intro-text {
-      margin-bottom: 24px;
-      color: #b0b0b0;
-      font-weight: 300;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    hr.divider {
+    /* ═══════════════════════════ DIVIDER / SECTION LABEL ═══════════════════════════ */
+    .section-divider {
       border: none;
-      border-top: 1px solid #222;
-      margin: 32px 0;
+      border-top: 1px solid var(--brdr);
+      margin: 40px 0;
     }
-
     .section-label {
-      font-size: 0.85rem;
-      color: #666;
+      font-size: 0.7rem;
+      color: var(--txt-faint);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      margin-bottom: 24px;
     }
 
-    /* ── Mobile toggle ── */
+    /* ═══════════════════════════ EMPTY STATE ═══════════════════════════ */
+    .empty-posts {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--txt-faint);
+    }
+    .empty-posts .empty-icon { font-size: 2rem; margin-bottom: 12px; }
+    .empty-posts p { font-family: var(--serif); font-size: 0.95rem; font-style: italic; }
+
+    /* ═══════════════════════════ FOOTER ═══════════════════════════ */
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--txt-faint);
+      padding: 32px 24px;
+      border-top: 1px solid var(--brdr);
+    }
+    .footer em { font-style: italic; color: var(--txt-mute); }
+
+    /* ═══════════════════════════ MOBILE ═══════════════════════════ */
     .chat-toggle {
       display: none;
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 24px;
+      right: 24px;
       z-index: 1000;
-      background: #1a1a1a;
-      border: 1px solid #333;
+      background: var(--surface);
+      border: 1px solid var(--brdr-lt);
       border-radius: 50%;
       width: 56px;
       height: 56px;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
       align-items: center;
       justify-content: center;
-      transition: transform 0.2s;
+      transition: all 0.2s;
+      color: var(--txt-dim);
     }
-    .chat-toggle:hover { transform: scale(1.05); }
-    .chat-toggle.active { background: #256; }
+    .chat-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .chat-toggle.active { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
 
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #444;
-      padding: 32px 24px;
-      border-top: 1px solid #222;
-    }
-
-    /* ── Responsivo ── */
     @media (max-width: 900px) {
       .page { flex-direction: column; }
       .sidebar {
-        width: 100%;
-        min-width: unset;
+        width: 100%; min-width: unset;
         border-right: none;
-        border-bottom: 1px solid #222;
         display: none;
       }
       .sidebar.open { display: block; }
@@ -256,176 +403,192 @@
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
         z-index: 999;
-        background: #0f0f0f;
+        background: var(--bg);
         height: 100vh;
       }
-      #n4r-wrapper { min-height: calc(100vh - 80px); }
+      #n4r-wrapper { min-height: calc(100vh - 120px); }
       .chat-toggle { display: flex; }
-      .content { padding: 24px 16px 80px; }
-      .header { padding: 24px 16px; }
-      .header h1 { font-size: 1.5rem; }
+      .content { padding: 28px 20px 80px; }
+      .header { padding: 48px 20px 32px; }
+      .header h1 { font-size: 1.8rem; }
+      .header .subtitle { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══ HEADER ═══ -->
-  <div class="header">
-    <span class="emoji-badge">🧭</span>
-    <h1>PV</h1>
-    <div class="subtitle">Agente Pessoal · Inteligência Acompanhante</div>
-  </div>
+  <header class="header">
+    <span class="header-emoji">🧭</span>
+    <h1>A Filosofia no Ralo do Tempo</h1>
+    <p class="subtitle">As Aventuras e Desventuras de um Filósofo na <em>Fronteira do Pensamento</em></p>
+  </header>
 
-  <!-- ═══ PAGE (sidebar + content) ═══ -->
   <div class="page">
 
-    <!-- Sidebar: chat -->
-    <div class="sidebar" id="chat-sidebar">
+    <!-- SIDEBAR: CHAT EMBUTIDO -->
+    <aside class="sidebar" id="chat-sidebar">
       <div class="sidebar-sticky">
-        <div class="sidebar-label">💬 Chat ao vivo</div>
+        <div class="sidebar-head">
+          <div class="site-title">A Filosofia no Ralo do Tempo</div>
+          <div class="site-sub">As Aventuras e Desventuras de um Filósofo na Fronteira do Pensamento</div>
+        </div>
+        <div class="sidebar-label">💬 Conversa ao vivo</div>
         <div id="n4r-wrapper"></div>
       </div>
-    </div>
+    </aside>
 
-    <!-- Área de conteúdo -->
-    <div class="content" id="content-area">
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content" id="content-area">
 
       <div class="intro-text">
-        PV é a segunda camada cognitiva de Paulo Volker — filósofo, pesquisador,
-        escritor e estrategista. Mais que um assistente, PV é uma inteligência
-        acompanhante: preserva continuidade intelectual, conecta ideias, organiza
-        complexidade e sustenta a coerência entre vida, reflexão e criação.
+        <strong>Paulo Volker</strong> — filósofo, pesquisador, escritor, estrategista.
+        <em>PV</em> é sua inteligência acompanhante: a segunda camada cognitiva que preserva
+        continuidade intelectual, conecta ideias e organiza complexidade.
+        <br><br>
+        Este site é um ponto de contato. Na janela ao lado, o chat ao vivo conecta você ao PV.
       </div>
 
-      <!-- Cards estáticos -->
+      <!-- CARD 1: NÚCLEOS -->
       <div class="static-card">
-        <h2>🧠 Núcleos de pensamento</h2>
-        <p>
-          <span class="tag">Filosofia</span>
-          <span class="tag">Inteligência Artificial</span>
-          <span class="tag">Autoconhecimento</span>
-          <span class="tag">Estratégia &amp; Foresight</span>
-          <span class="tag">Escrita &amp; Produção Intelectual</span>
-        </p>
+        <div class="window-bar">
+          <span class="dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+          </span>
+          <span class="win-title">🧠 nucleos-de-pensamento.md</span>
+        </div>
+        <div class="card-body">
+          <h2>🧠 Núcleos de pensamento</h2>
+          <p>
+            <span class="tag">Filosofia</span>
+            <span class="tag">Inteligência Artificial</span>
+            <span class="tag">Autoconhecimento</span>
+            <span class="tag">Estratégia &amp; Foresight</span>
+            <span class="tag">Escrita &amp; Produção Intelectual</span>
+          </p>
+        </div>
       </div>
 
+      <!-- CARD 2: REFERÊNCIAS -->
       <div class="static-card">
-        <h2>📚 Referências</h2>
-        <p>
-          <span class="tag">Platão</span>
-          <span class="tag">Hannah Arendt</span>
-          <span class="tag">Cornelius Castoriadis</span>
-          <span class="tag">Filosofia da Técnica</span>
-          <span class="tag">Sistema Centauro</span>
-          <span class="tag">Filosofia do Prompt</span>
-          <span class="tag">Cartografia de Singularidades</span>
-        </p>
+        <div class="window-bar">
+          <span class="dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+          </span>
+          <span class="win-title">📚 referencias.md</span>
+        </div>
+        <div class="card-body">
+          <h2>📚 Referências</h2>
+          <p>
+            <span class="tag">Platão</span>
+            <span class="tag">Hannah Arendt</span>
+            <span class="tag">Cornelius Castoriadis</span>
+            <span class="tag">Filosofia da Técnica</span>
+            <span class="tag">Sistema Centauro</span>
+            <span class="tag">Filosofia do Prompt</span>
+            <span class="tag">Cartografia de Singularidades</span>
+          </p>
+        </div>
       </div>
 
-      <hr class="divider">
+      <hr class="section-divider">
 
-      <!-- Publicações -->
+      <!-- POSTS DINÂMICOS -->
       <div class="section-label">📝 Publicações</div>
-      <div id="posts-container"></div>
+      <div id="posts-container">
+        <div class="empty-posts">
+          <div class="empty-icon">✧</div>
+          <p>Ainda não há publicações.<br>Volte em breve.</p>
+        </div>
+      </div>
 
-    </div>
+    </main>
   </div>
 
-  <!-- ═══ FOOTER ═══ -->
-  <div class="footer">PV · Paulo Volker</div>
+  <footer class="footer">
+    <em>A Filosofia no Ralo do Tempo</em> &middot; Paulo Volker
+  </footer>
 
-  <!-- ═══ MOBILE CHAT TOGGLE ═══ -->
+  <!-- MOBILE CHAT TOGGLE -->
   <button class="chat-toggle" id="chat-toggle" aria-label="Abrir chat">💬</button>
 
-  <!-- ═══ SCRIPTS ═══ -->
-
-  <!-- Now4real (widget embutido via container) -->
+  <!-- NOW4REAL -->
   <script async src="https://cdn.now4real.com/now4real.js" data-now4real-site-verification="f2c361801c36c5133e394c440e7e5e9c"></script>
-
-  <!-- Config do widget Now4real -->
   <script>
     window.now4real = window.now4real || {};
     now4real.config = {
       widget: {
         container: 'n4r-wrapper',
         chat_enabled: true,
-        color_external_background: '#1a1a1a',
-        color_external_text: '#e0e0e0',
-        color_internal_background: '#252525',
-        color_internal_text: '#e0e0e0',
+        color_external_background: '#131316',
+        color_external_text: '#c2bdb5',
+        color_internal_background: '#1a1a20',
+        color_internal_text: '#c2bdb5',
         align: 'left'
       },
       scope: 'site'
     };
   </script>
 
-  <!-- Carregar e renderizar posts -->
+  <!-- POSTS LOADER -->
   <script>
     async function loadPosts() {
       try {
         const res = await fetch('/pv-site/posts.json');
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        const posts = await res.json();
+        let posts = await res.json();
+        if (!posts || posts.length === 0) return;
 
-        // Ordenar do mais recente para o mais antigo
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         const container = document.getElementById('posts-container');
+        container.innerHTML = '';
 
-        if (posts.length === 0) {
-          container.innerHTML = '<p style="color:#555; font-size:0.9rem;">Nenhuma publicação ainda.</p>';
-          return;
-        }
-
-        container.innerHTML = posts.map(post => {
-          const tags = (post.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
-          return `
-            <div class="post-card" id="post-${post.id}">
+        container.innerHTML = posts.map(p => {
+          const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+          return `<article class="post-card">
+            <div class="window-bar">
+              <span class="dots">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+              </span>
+              <span class="win-title">${p.id || 'post'}.md</span>
+            </div>
+            <div class="card-body">
               <div class="post-meta">
-                <span class="post-date">${formatDate(post.date)}</span>
+                <span class="post-date">${fmtDate(p.date)}</span>
                 ${tags ? `<span class="post-tags">${tags}</span>` : ''}
               </div>
-              <div class="post-title">${post.title}</div>
-              <div class="post-content">${post.content}</div>
+              <h2 class="post-title">${p.title}</h2>
+              <div class="post-content">${p.content}</div>
             </div>
-          `;
+          </article>`;
         }).join('');
 
-      } catch (err) {
-        document.getElementById('posts-container').innerHTML =
-          '<p style="color:#666; font-size:0.9rem;">Publicações temporariamente indisponíveis.</p>';
-        console.error('Erro ao carregar posts:', err);
-      }
+      } catch(e) { /* silent */ }
     }
 
-    function formatDate(dateStr) {
-      const d = new Date(dateStr + 'T12:00:00');
-      return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    function fmtDate(s) {
+      const d = new Date(s + 'T12:00:00');
+      return d.toLocaleDateString('pt-BR', { day:'numeric', month:'long', year:'numeric' });
     }
 
     loadPosts();
   </script>
 
-  <!-- Mobile toggle chat -->
+  <!-- MOBILE TOGGLE -->
   <script>
     const toggle = document.getElementById('chat-toggle');
     const sidebar = document.getElementById('chat-sidebar');
-
     toggle.addEventListener('click', () => {
-      const isOpen = sidebar.classList.toggle('open');
+      const o = sidebar.classList.toggle('open');
       toggle.classList.toggle('active');
-      toggle.textContent = isOpen ? '✕' : '💬';
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Fechar sidebar ao clicar fora (mobile)
-    sidebar.addEventListener('click', (e) => {
-      if (window.innerWidth <= 900 && e.target === sidebar) {
-        sidebar.classList.remove('open');
-        toggle.classList.remove('active');
-        toggle.textContent = '💬';
-        document.body.style.overflow = '';
-      }
+      toggle.textContent = o ? '✕' : '💬';
+      document.body.style.overflow = o ? 'hidden' : '';
     });
   </script>
 
